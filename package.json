@@ -25,6 +25,7 @@
     "prepare": "husky install",
     "lint": "eslint .",
     "lint-fix": "prettier . --write && eslint . --fix",
-    "build": "yarn tsc"
+    "build": "yarn tsc",
+    "test": "exit 0"
   }
 }

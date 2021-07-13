@@ -9,7 +9,7 @@ beforeEach(() => {
     A: {},
     B: {},
     C: {},
-    D: {}
+    D: {},
   } as any;
 });
 
@@ -33,7 +33,7 @@ test("calls onEnter", () => {
   const mock = fn();
   const { result } = renderHook(() =>
     useRefMap({
-      onEnter: (key, element) => mock(key, element)
+      onEnter: (key, element) => mock(key, element),
     })
   );
 
@@ -51,7 +51,7 @@ test("calls onLeave", () => {
   const mock = fn();
   const { result } = renderHook(() =>
     useRefMap({
-      onLeave: (key, element) => mock(key, element)
+      onLeave: (key, element) => mock(key, element),
     })
   );
 
@@ -70,7 +70,7 @@ test("calls onChange", () => {
   const mock = fn();
   const { result } = renderHook(() =>
     useRefMap({
-      onChange: (key, element) => mock(key, element)
+      onChange: (key, element) => mock(key, element),
     })
   );
 
@@ -101,4 +101,3 @@ test("deletes elements", () => {
 
   expect(Object.keys(refs.current).length).toBe(0);
 });
-

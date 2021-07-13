@@ -3,7 +3,7 @@ module.exports = {
   extends: ["airbnb-typescript/base", "plugin:jest/recommended", "prettier"],
   plugins: ["jest"],
   env: {
-    node: true
+    node: true,
   },
   parserOptions: {
     project: "./tsconfig.eslint.json",
@@ -11,6 +11,6 @@ module.exports = {
   rules: {
     "import/no-default-export": "error",
     "import/prefer-default-export": "off",
-    "no-underscore-dangle": "off"
-  }
+    "no-underscore-dangle": "off",
+  },
 };

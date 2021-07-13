@@ -15,4 +15,3 @@ jobs:
         name: "Publish"
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          

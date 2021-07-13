@@ -63,7 +63,7 @@ test("calls onLeave", () => {
 
   expect(mock.mock.calls.length).toBe(1);
   expect(mock.mock.calls[0][0]).toBe(id);
-  expect(mock.mock.calls[0][1]).toBe(null);
+  expect(mock.mock.calls[0][1]).toBe(htmlElem);
 });
 
 test("calls onChange", () => {

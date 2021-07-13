@@ -1,19 +1,20 @@
 import { Ref, RefCallback, useCallback, useEffect, useRef } from "react";
 
-export type UseRefMapListener = (
-  key: string | number,
-  element: HTMLElement | null,
-  refs: Ref<Record<string | number, HTMLElement>>
-) => void;
+export type ElementMap = Record<string | number, HTMLElement>;
+export type Key = string | number;
 
 export function useRefMap(
   listeners: {
-    onChange?: UseRefMapListener;
-    onEnter?: UseRefMapListener;
-    onLeave?: UseRefMapListener;
+    onChange?: (
+      key: Key,
+      element: HTMLElement | null,
+      refs: Ref<ElementMap>
+    ) => void;
+    onEnter?: (key: Key, element: HTMLElement, refs: Ref<ElementMap>) => void;
+    onLeave?: (key: Key, element: HTMLElement, refs: Ref<ElementMap>) => void;
   } = {}
 ) {
-  const elementsRef = useRef<Record<string | number, HTMLElement>>({});
+  const elementsRef = useRef<ElementMap>({});
   const funcsRef = useRef<Record<string | number, RefCallback<HTMLElement>>>(
     {}
   );
@@ -30,9 +31,10 @@ export function useRefMap(
           elementsRef.current[key] = elem;
           callbackRef.current.onEnter?.(key, elem, elementsRef);
         } else {
+          const deletedElem = elementsRef.current[key];
           delete funcsRef.current[key];
           delete elementsRef.current[key];
-          callbackRef.current.onLeave?.(key, elem, elementsRef);
+          callbackRef.current.onLeave?.(key, deletedElem, elementsRef);
         }
         callbackRef.current.onChange?.(key, elem, elementsRef);
       };
